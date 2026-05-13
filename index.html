@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>苗栗八甲茶園 | 從土地到茶杯的靜謐旅程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --forest-green: #2C4C3B;
+            --cream-white: #F9F7F2;
+            --warm-wood: #A67C52;
+            --zen-dark: #1A1A1A;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream-white);
+            color: var(--zen-dark);
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-forest { background-color: var(--forest-green); }
+        .text-forest { color: var(--forest-green); }
+        .glass-nav {
+            background: rgba(249, 247, 242, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+        .floating-ai-btn {
+            box-shadow: 0 10px 25px -5px rgba(44, 76, 59, 0.3);
+        }
+        /* 自定義捲軸 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--cream-white); }
+        ::-webkit-scrollbar-thumb { background: var(--forest-green); border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 glass-nav border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-forest rounded-full flex items-center justify-center">
+                    <i data-lucide="leaf" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-forest">八甲茶園</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <a href="#hero" class="hover:text-green-800 transition">首頁</a>
+                <a href="#products" class="hover:text-green-800 transition">嚴選茶品</a>
+                <a href="#stats" class="hover:text-green-800 transition">即時農況</a>
+                <a href="#" class="hover:text-green-800 transition">關於我們</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button class="relative p-2 hover:bg-gray-100 rounded-full transition" id="cartBtn">
+                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                    <span id="cartCount" class="absolute top-0 right-0 bg-orange-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544739313-6fad02872377?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Tea Plantation" class="w-full h-full object-cover brightness-75">
+        </div>
+        <div class="relative z-10 text-center px-6">
+            <span class="text-white uppercase tracking-[0.3em] text-sm mb-4 block opacity-90">Miaoli Bajia Tea Garden</span>
+            <h1 class="text-5xl md:text-7xl text-white mb-6">從土地到茶杯的<br><span class="italic">靜謐旅程</span></h1>
+            <p class="text-white/80 max-w-xl mx-auto mb-8 font-light leading-relaxed">
+                在苗栗丘陵的雲霧中，我們以誠摯的心守護每一株茶苗，為您遞上一份大自然的禮物。
+            </p>
+            <a href="#products" class="inline-block px-10 py-4 bg-white text-forest hover:bg-forest hover:text-white transition-all rounded-full font-medium">
+                探索嚴選茶品
+            </a>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="text-white w-8 h-8"></i>
+        </div>
+    </section>
+
+    <section id="products" class="py-24 max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl mb-4">嚴選茶品</h2>
+            <div class="w-12 h-1 bg-forest mx-auto opacity-30"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12" id="productGrid">
+            <!-- 商品卡片由 JS 生成 -->
+        </div>
+    </section>
+
+    <section id="stats" class="py-20 bg-stone-100 border-y border-stone-200">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h3 class="text-3xl mb-6">數位孿生農場監控</h3>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        我們導入 IoT 感測技術，即時監控八甲茶園的微氣候。透明化的數據不僅是我們對品質的承諾，更是讓您喝得安心的保證。
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="p-6 bg-white rounded-2xl shadow-sm border border-stone-200">
+                            <div class="text-forest flex items-center mb-2">
+                                <i data-lucide="thermometer" class="w-5 h-5 mr-2"></i>
+                                <span class="text-xs uppercase font-bold tracking-tighter">環境氣溫</span>
+                            </div>
+                            <div class="text-3xl font-light" id="tempValue">24.5°C</div>
+                        </div>
+                        <div class="p-6 bg-white rounded-2xl shadow-sm border border-stone-200">
+                            <div class="text-blue-600 flex items-center mb-2">
+                                <i data-lucide="droplets" class="w-5 h-5 mr-2"></i>
+                                <span class="text-xs uppercase font-bold tracking-tighter">空氣濕度</span>
+                            </div>
+                            <div class="text-3xl font-light" id="humidityValue">78%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative rounded-3xl overflow-hidden aspect-video shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1594631252845-29fc4586c55c?q=80&w=2000&auto=format&fit=crop" 
+                         alt="Farm View" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 px-3 py-1 bg-green-500 text-white text-[10px] rounded-full flex items-center">
+                        <span class="w-1.5 h-1.5 bg-white rounded-full mr-2 animate-pulse"></span> 即時監控中
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-forest text-white/90 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <i data-lucide="leaf" class="text-white w-5 h-5"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white">八甲茶園</span>
+                </div>
+                <p class="text-sm font-light leading-relaxed text-white/60">
+                    深耕苗栗，傳承百年茶文化。<br>致力於永續耕作，讓每一口茶湯都帶有土地的芬芳。
+                </p>
+            </div>
+            <div class="space-y-4">
+                <h4 class="text-white font-semibold">快速連結</h4>
+                <ul class="text-sm font-light space-y-2 text-white/60">
+                    <li><a href="#" class="hover:text-white transition">購物須知</a></li>
+                    <li><a href="#" class="hover:text-white transition">配送政策</a></li>
+                    <li><a href="#" class="hover:text-white transition">茶園日誌</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4 text-right md:text-right">
+                <div class="flex justify-end space-x-4">
+                    <a href="#" class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="https://github.com" class="p-2 bg-white/10 rounded-full hover:bg-white/20 transition"><i data-lucide="github" class="w-5 h-5"></i></a>
+                </div>
+                <p class="text-xs text-white/40">© 2024 Bajia Tea Garden. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI 諮詢視窗 -->
+    <div id="aiPanel" class="fixed bottom-24 right-6 w-[350px] bg-white rounded-3xl shadow-2xl overflow-hidden transform translate-y-full opacity-0 transition-all duration-500 z-[60] border border-stone-100">
+        <div class="bg-forest p-4 flex justify-between items-center text-white">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </div>
+                <span class="text-sm font-medium">AI 侍茶師</span>
+            </div>
+            <button id="closeAi" class="hover:bg-white/10 p-1 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <div class="h-80 overflow-y-auto p-4 space-y-4 bg-stone-50" id="chatHistory">
+            <div class="bg-white p-3 rounded-2xl rounded-tl-none text-sm text-gray-700 shadow-sm border border-stone-100">
+                您好，我是您的 AI 侍茶師。請問您今天的心情如何？我可以為您推薦適合的茶品。
+            </div>
+        </div>
+        <div class="p-4 bg-white border-t border-stone-100 flex space-x-2">
+            <input type="text" id="userInput" placeholder="例如：心情有點沉悶..." class="flex-1 bg-stone-100 text-sm px-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-green-800">
+            <button id="sendMsg" class="bg-forest text-white p-2 rounded-full hover:scale-105 transition"><i data-lucide="send" class="w-4 h-4"></i></button>
+        </div>
+    </div>
+
+    <!-- AI 漂浮按鈕 -->
+    <button id="toggleAi" class="fixed bottom-6 right-6 w-14 h-14 bg-forest text-white rounded-full flex items-center justify-center z-[60] floating-ai-btn hover:scale-110 transition-transform">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+    </button>
+
+    <script>
+        // 初始化 Lucide 圖標
+        lucide.createIcons();
+
+        // 商品數據
+        const products = [
+            { id: 1, name: "東方美人茶", price: 1200, desc: "帶有天然蜂蜜與熟果香，是苗栗最具代表性的極品烏龍。", img: "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?q=80&w=1974&auto=format&fit=crop" },
+            { id: 2, name: "貓裏紅 (紅茶)", price: 850, desc: "獨特的在地紅茶，入口甘醇，尾韻帶有淡淡的花香。", img: "https://images.unsplash.com/photo-1563915033334-2a6288647990?q=80&w=2070&auto=format&fit=crop" },
+            { id: 3, name: "四季春烏龍", price: 600, desc: "清香高雅，適合日常飲用，感受八甲山頭的清爽氣息。", img: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=1974&auto=format&fit=crop" }
+        ];
+
+        // 渲染商品
+        const productGrid = document.getElementById('productGrid');
+        products.forEach(p => {
+            const div = document.createElement('div');
+            div.className = 'product-card group';
+            div.innerHTML = `
+                <div class="relative overflow-hidden rounded-3xl aspect-[4/5] mb-6 shadow-md">
+                    <img src="${p.img}" alt="${p.name}" class="product-img w-full h-full object-cover transition-transform duration-700">
+                    <button onclick="addToCart(${p.id})" class="absolute bottom-4 right-4 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-xl hover:bg-forest hover:text-white transition-colors">
+                        <i data-lucide="plus" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <h3 class="text-2xl mb-2">${p.name}</h3>
+                <p class="text-gray-500 text-sm mb-4 leading-relaxed">${p.desc}</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-xl font-medium tracking-tighter text-forest">NT$ ${p.price}</span>
+                    <span class="text-[10px] text-stone-400 uppercase tracking-widest">75g / 罐</span>
+                </div>
+            `;
+            productGrid.appendChild(div);
+        });
+        lucide.createIcons();
+
+        // 購物車邏輯
+        let cart = [];
+        const cartCount = document.getElementById('cartCount');
+        
+        window.addToCart = (id) => {
+            cart.push(id);
+            cartCount.innerText = cart.length;
+            cartCount.classList.remove('hidden');
+            // 觸發一個微小的縮放動畫
+            cartCount.parentElement.classList.add('scale-110');
+            setTimeout(() => cartCount.parentElement.classList.remove('scale-110'), 200);
+        };
+
+        // AI 諮詢面板控制
+        const aiPanel = document.getElementById('aiPanel');
+        const toggleAi = document.getElementById('toggleAi');
+        const closeAi = document.getElementById('closeAi');
+        const chatHistory = document.getElementById('chatHistory');
+        const userInput = document.getElementById('userInput');
+        const sendMsg = document.getElementById('sendMsg');
+
+        toggleAi.addEventListener('click', () => {
+            aiPanel.classList.remove('translate-y-full', 'opacity-0');
+            aiPanel.classList.add('translate-y-0', 'opacity-100');
+            toggleAi.classList.add('scale-0');
+        });
+
+        closeAi.addEventListener('click', () => {
+            aiPanel.classList.add('translate-y-full', 'opacity-0');
+            aiPanel.classList.remove('translate-y-0', 'opacity-100');
+            toggleAi.classList.remove('scale-0');
+        });
+
+        // AI 茶師模擬對話
+        async function askAI(query) {
+            const history = document.getElementById('chatHistory');
+            
+            // 使用者訊息
+            const userDiv = document.createElement('div');
+            userDiv.className = 'bg-forest text-white p-3 rounded-2xl rounded-tr-none text-sm self-end shadow-sm ml-8';
+            userDiv.innerText = query;
+            history.appendChild(userDiv);
+            history.scrollTop = history.scrollHeight;
+
+            // 準備調用 Gemini API (Mock or Real)
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'bg-white p-3 rounded-2xl rounded-tl-none text-xs text-gray-400 italic';
+            loadingDiv.innerText = "侍茶師思考中...";
+            history.appendChild(loadingDiv);
+
+            try {
+                const prompt = `你是一位專業的台灣茶葉侍茶師，服務於「苗栗八甲茶園」。
+                用戶說：'${query}'。
+                請根據他的心情推薦我們的三款產品之一（東方美人茶、貓裏紅、四季春烏龍）。
+                回答要溫暖、具備禪意，且字數不超過100字。`;
+
+                // 呼叫 Gemini API
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        systemInstruction: { parts: [{ text: "你是八甲茶園的專業茶師，說話簡潔有禮，充滿自然氣息。" }] }
+                    })
+                });
+
+                const data = await response.json();
+                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "茶湯映照心境。建議您試試看我們的東方美人茶，感受大自然的甜潤。";
+
+                loadingDiv.remove();
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'bg-white p-3 rounded-2xl rounded-tl-none text-sm text-gray-700 shadow-sm border border-stone-100 mr-8';
+                aiDiv.innerText = aiText;
+                history.appendChild(aiDiv);
+            } catch (err) {
+                loadingDiv.innerText = "茶香在空氣中凝結了...請稍後再試。";
+            }
+            history.scrollTop = history.scrollHeight;
+        }
+
+        sendMsg.addEventListener('click', () => {
+            const val = userInput.value.trim();
+            if(val) {
+                askAI(val);
+                userInput.value = '';
+            }
+        });
+
+        userInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') sendMsg.click();
+        });
+
+        // 模擬數據更新
+        setInterval(() => {
+            const temp = (23 + Math.random() * 3).toFixed(1);
+            const humid = (75 + Math.random() * 10).toFixed(0);
+            document.getElementById('tempValue').innerText = `${temp}°C`;
+            document.getElementById('humidityValue').innerText = `${humid}%`;
+        }, 5000);
+
+    </script>
+</body>
+</html>
